@@ -1,7 +1,43 @@
 <?php
 
-class Conection{
+class Conection {
 
+    public static function odbcConnect() {
+        $database = 'SAMPLE';          // Nombre de la base de datos
+        $hostname = 'localhost';     // Nombre del host
+        $user = 'db2admin';          // Usuario de la base de datos
+        $password = '00101011';      // Contraseña de la base de datos
+        $port = 50000;               // Puerto de conexión
+
+        // Crear la cadena de conexión
+        $driver = "DRIVER={IBM DB2 ODBC DRIVER};";
+        $dsn = "DATABASE=$database; " .
+               "HOSTNAME=$hostname;" .
+               "PORT=$port; " .
+               "PROTOCOL=TCPIP; " .
+               "UID=$user;" .
+               "PWD=$password;";
+        
+        $conn_string = $driver . $dsn;
+
+        // Conectar a la base de datos
+        $conn = odbc_connect($conn_string, '', '');
+
+        if ($conn) {
+            return $conn;
+        } else {
+            die("Error en la conexión: " . odbc_errormsg());
+        }
+    }
+
+    public static function odbcDisconnect($conn) {
+        odbc_close($conn);
+    }
+
+
+
+
+    /*
     function db2Connect() {
 
         $database = 'PRUEBA';
@@ -15,7 +51,9 @@ class Conection{
     
         // Conectar a la base de datos
         $conn = db2_connect($conn_string, '', '');
-    
+
+        
+
         if ($conn) {
             return $conn;
         } else {
@@ -27,7 +65,9 @@ class Conection{
 
         db2_close($conn);
     }
+    */
 
+    /*
     static public function conect(){
 
         $dataBaseName = "PRUEBA";
@@ -53,4 +93,5 @@ class Conection{
             return null;
         }
     }
+    */
 }

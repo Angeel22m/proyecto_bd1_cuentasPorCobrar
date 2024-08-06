@@ -4,6 +4,22 @@ class PruebaModel{
 
     static public function mostrarPrueba(){
 
+        
+        // Ejemplo de uso
+        $conn = Conection::odbcConnect(); // Para conectar sin SSL
+        // $conn = odbcConnect(true); // Para conectar con SSL
+
+        if ($conn) {
+            echo "Conexión satisfactoria.";
+
+            // Desconectar
+            Conection::odbcDisconnect($conn);
+        } else {
+            echo "Conexión errónea.";
+        }
+
+
+        /*
         $conn = db2Connect();
 
         if ($conn) {
@@ -24,6 +40,9 @@ class PruebaModel{
             // Desconectar de la base de datos
             db2Disconnect($conn);
         }
+
+        */
+
         /*
         $script = Conection::conect()->prepare("SELECT * FROM persona");
 
