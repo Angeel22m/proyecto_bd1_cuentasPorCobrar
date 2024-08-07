@@ -33,6 +33,7 @@ class Conection {
     public static function odbcDisconnect($conn) {
         odbc_close($conn);
     }
+    
 
 
 
